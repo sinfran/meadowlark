@@ -4,13 +4,7 @@ var express = require('express');
 
 var app = express();
 
-var quotes = [
-	"Wherever you go becomes a part of you somehow",
-	"Do not fear what you don't know",
-	"Better to see something once than hear about it a thousand times",
-	"Travelling - it leaves you speechless, then turns you into a storyteller",
-	"Travel and change of place impart new vigor to the mind."
-];
+var quote = require('./lib/quote.js');
 
 
 // Set up handlebars view engine
@@ -27,8 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/about', function(req, res) {
-	var randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-	res.render('about', { quote: randomQuote });
+	res.render('about', { quote: quote.getQuote() });
 });
 
 
